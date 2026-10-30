@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de Davi Kusumi — Desenvolvedor de Software Júnior focado em cibersegurança e boas práticas de engenharia de software.">
+  <title>Davi Kusumi — Desenvolvedor de Software Júnior | Cibersegurança</title>
+
+  <!-- Google Fonts: Lobster para títulos e Space Grotesk para suporte tipográfico -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos principais -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Cursor Personalizado em formato de Seta (Referência: Esther Wong) -->
+  <div id="custom-cursor" class="custom-cursor" aria-hidden="true">
+    <svg class="cursor-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 3L10.5 21L13.5 13.5L21 10.5L3 3Z" fill="#F8F9FA" stroke="#212529" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+    <div class="cursor-trail"></div>
+  </div>
+
+  <!-- Tela de Introdução com Números Grandes que Explodem em Partículas (Referência: Junk Branding) -->
+  <div id="intro-overlay" class="intro-overlay" aria-hidden="true">
+    <div class="intro-number-container">
+      <span id="intro-number" class="intro-number">00</span>
+      <div class="intro-label">INICIANDO SISTEMA // CIBERSEGURANÇA</div>
+    </div>
+  </div>
+
+  <!-- Menu Fixo Superior com Efeito de Partículas (Funcionalidade 1) -->
+  <nav class="fixed-navbar" id="navbar" aria-label="Navegação principal">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" data-interactive="true">
+        <span class="logo-symbol">&lt;</span><span class="logo-text">DK</span><span class="logo-symbol">/&gt;</span>
+      </a>
+
+      <!-- Lista de Links com Efeito de Compactação de Partículas -->
+      <ul class="nav-links" id="nav-links">
+        <li class="nav-item">
+          <a href="#hero" class="nav-link active" data-interactive="true" data-text="Início">
+            <span class="particle-target">Início</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#sobre" class="nav-link" data-interactive="true" data-text="Sobre mim">
+            <span class="particle-target">Sobre mim</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#projetos" class="nav-link nav-link-disabled" data-interactive="true" data-text="Projetos">
+            <span class="particle-target">Projetos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#contato" class="nav-link nav-link-disabled" data-interactive="true" data-text="Contato">
+            <span class="particle-target">Contato</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Status indicator lateral -->
+      <div class="nav-status" aria-hidden="true">
+        <span class="status-indicator"></span>
+        <span class="status-label">ONLINE // v1.0</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Canvas Interativo de Partículas (Referência: Junk Branding) -->
+  <canvas id="particle-canvas" class="particle-canvas"></canvas>
+
+  <!-- ========================================================= -->
+  <!-- SEÇÃO 1: HERO / INTRODUÇÃO                                -->
+  <!-- ========================================================= -->
+  <header class="hero-section" id="hero">
+    <div class="hero-container">
+      
+      <!-- Coluna da Esquerda: Conteúdo Textual e Identidade -->
+      <div class="hero-content">
+        <div class="hero-badge" data-interactive="true">
+          <span class="badge-dot"></span>
+          <span class="badge-text">SEC_ENG // DESENVOLVEDOR JÚNIOR</span>
+        </div>
+
+        <h1 class="hero-title" data-interactive="true">
+          Davi Kusumi
+        </h1>
+
+        <div class="hero-presentation">
+          <p class="hero-phrase">
+            Davi Kusumi, Desenvolvedor de software junior focado em cibersegurança.
+          </p>
+          <p class="hero-subtext">
+            Busco aplicar boas práticas de desenvolvimento e colaborar com a equipe.
+          </p>
+        </div>
+
+        <!-- Botão de Ação Interativo (Referência: Overworld Audio) -->
+        <div class="hero-actions">
+          <a href="#sobre" class="cta-button" id="hero-cta-btn" data-interactive="true" role="button">
+            <span class="btn-glow"></span>
+            <span class="btn-surface">
+              <span class="btn-text">Explorar Portfólio</span>
+              <span class="btn-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Coluna da Direita: Objeto 3D Girando Continuamente (Referência: Pilato -> Cubo) -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="cube-scene" id="cube-scene">
+          <div class="cube" id="cube-3d">
+            <div class="cube-face cube-front">
+              <div class="cube-core-grid"></div>
+              <span class="cube-tag">&lt;SEC/&gt;</span>
+            </div>
+            <div class="cube-face cube-back">
+              <div class="cube-core-grid"></div>
+              <span class="cube-tag">0101</span>
+            </div>
+            <div class="cube-face cube-right">
+              <div class="cube-core-grid"></div>
+              <span class="cube-tag">SAFE</span>
+            </div>
+            <div class="cube-face cube-left">
+              <div class="cube-core-grid"></div>
+              <span class="cube-tag">DEV</span>
+            </div>
+            <div class="cube-face cube-top">
+              <div class="cube-core-grid"></div>
+              <span class="cube-tag">CUBE</span>
+            </div>
+            <div class="cube-face cube-bottom">
+              <div class="cube-core-grid"></div>
+              <span class="cube-tag">ROOT</span>
+            </div>
+          </div>
+          <!-- Anel holográfico de rotação -->
+          <div class="cube-orbit"></div>
+          <div class="cube-shadow"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Indicador sutil de navegação na base da Hero -->
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <div class="mouse-icon">
+        <div class="wheel"></div>
+      </div>
+      <span class="indicator-label">SCROLL</span>
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- SEÇÃO 2: SOBRE MIM (Funcionalidade 2)                     -->
+  <!-- ========================================================= -->
+  <section class="about-section" id="sobre" aria-labelledby="about-title">
+    <div class="about-container">
+      
+      <!-- Cabeçalho da Seção -->
+      <div class="section-header reveal-on-scroll">
+        <div class="section-tag" data-interactive="true">
+          <span class="tag-number">02 //</span>
+          <span class="tag-title">INFORMAÇÕES PESSOAIS E PROFISSIONAIS</span>
+        </div>
+        <h2 class="section-title" id="about-title" data-interactive="true">
+          Sobre mim
+        </h2>
+        <div class="title-underline" aria-hidden="true"></div>
+      </div>
+
+      <!-- Card Editorial Minimalista (Sem Fotografias Pessoais) -->
+      <div class="about-card reveal-on-scroll" data-interactive="true">
+        <!-- Barra Superior Estilo Terminal Cibernético -->
+        <div class="terminal-bar" aria-hidden="true">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="terminal-title">davi-kusumi@security: ~/perfil</span>
+          <span class="terminal-status">READ_ONLY</span>
+        </div>
+
+        <!-- Conteúdo Textual Oficial -->
+        <div class="about-body">
+          <p class="about-statement">
+            "Sou Davi Kusumi. Faço curso técnico, busco aplicar boas práticas de desenvolvimento e colaborar com a equipe. Realizei alguns pequenos projetos e pretendo aumentar minha capacidade de criar projetos inovadores. Sou pré-formado em segurança na engenharia de software e pretendo aprender mais sobre outras áreas da tecnologia."
+          </p>
+
+          <!-- Destaques Estruturados Baseados Fielmente no Perfil do Aluno -->
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <span class="highlight-key">FORMAÇÃO TÉCNICA:</span>
+              <span class="highlight-val">Curso Técnico &amp; Pré-formado em Segurança na Engenharia de Software</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-key">PRINCIPAIS DIRETRIZES:</span>
+              <span class="highlight-val">Boas Práticas de Desenvolvimento, Trabalho em Equipe e Inovação</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-key">OBJETIVO:</span>
+              <span class="highlight-val">Evolução contínua e aprendizado em novas áreas da tecnologia</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rodapé do Card com Tags de Identificação -->
+        <div class="about-footer">
+          <div class="spec-tags">
+            <span class="spec-tag">#CyberSecurity</span>
+            <span class="spec-tag">#SoftwareEngineering</span>
+            <span class="spec-tag">#BestPractices</span>
+            <span class="spec-tag">#Teamwork</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Script principal em JavaScript puro -->
+  <script src="script.js"></script>
+</body>
+</html>
