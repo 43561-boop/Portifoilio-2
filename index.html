@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfólio de Davi Kusumi — Desenvolvedor de Software Júnior focado em cibersegurança e boas práticas de engenharia de software.">
+  <meta name="description"
+    content="Portfólio de Davi Kusumi — Desenvolvedor de Software Júnior focado em cibersegurança e boas práticas de engenharia de software.">
   <title>Davi Kusumi — Desenvolvedor de Software Júnior | Cibersegurança</title>
 
   <!-- Google Fonts: Lobster para títulos e Space Grotesk para suporte tipográfico -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lobster&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Estilos principais -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <!-- Cursor Personalizado em formato de Seta (Referência: Esther Wong) -->
   <div id="custom-cursor" class="custom-cursor" aria-hidden="true">
     <svg class="cursor-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M3 3L10.5 21L13.5 13.5L21 10.5L3 3Z" fill="#F8F9FA" stroke="#212529" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M3 3L10.5 21L13.5 13.5L21 10.5L3 3Z" fill="#F8F9FA" stroke="#212529" stroke-width="1.5"
+        stroke-linejoin="round" />
     </svg>
     <div class="cursor-trail"></div>
   </div>
@@ -78,7 +84,7 @@
   <!-- ========================================================= -->
   <header class="hero-section" id="hero">
     <div class="hero-container">
-      
+
       <!-- Coluna da Esquerda: Conteúdo Textual e Identidade -->
       <div class="hero-content">
         <div class="hero-badge" data-interactive="true">
@@ -106,7 +112,8 @@
             <span class="btn-surface">
               <span class="btn-text">Explorar Portfólio</span>
               <span class="btn-icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
@@ -167,7 +174,7 @@
   <!-- ========================================================= -->
   <section class="about-section" id="sobre" aria-labelledby="about-title">
     <div class="about-container">
-      
+
       <!-- Cabeçalho da Seção -->
       <div class="section-header reveal-on-scroll">
         <div class="section-tag" data-interactive="true">
@@ -196,7 +203,10 @@
         <!-- Conteúdo Textual Oficial -->
         <div class="about-body">
           <p class="about-statement">
-            "Sou Davi Kusumi. Faço curso técnico, busco aplicar boas práticas de desenvolvimento e colaborar com a equipe. Realizei alguns pequenos projetos e pretendo aumentar minha capacidade de criar projetos inovadores. Sou pré-formado em segurança na engenharia de software e pretendo aprender mais sobre outras áreas da tecnologia."
+            "Sou Davi Kusumi. Faço curso técnico, busco aplicar boas práticas de desenvolvimento e colaborar com a
+            equipe. Realizei alguns pequenos projetos e pretendo aumentar minha capacidade de criar projetos inovadores.
+            Sou pré-formado em segurança na engenharia de software e pretendo aprender mais sobre outras áreas da
+            tecnologia."
           </p>
 
           <!-- Destaques Estruturados Baseados Fielmente no Perfil do Aluno -->
@@ -233,4 +243,319 @@
   <!-- Script principal em JavaScript puro -->
   <script src="script.js"></script>
 </body>
+
 </html>
+
+<!-- SEÇÃO PROJETOS & CUBO 3D -->
+<section id="projetos" class="section-projetos">
+  <div class="container">
+    <div class="projetos-header">
+      <h2 class="section-title">Meus Projetos</h2>
+      <p class="section-subtitle">Soluções autorais unindo inteligência artificial, engenharia e segurança.</p>
+    </div>
+
+    <!-- Referência 3: Cubo 3D Interativo Substituindo o Carro -->
+    <div class="cube-showcase" aria-hidden="true">
+      <div class="cube-scene">
+        <div class="cube" id="interactiveCube">
+          <div class="cube-face front"><span class="cube-tag">&lt;/&gt;</span><span>SOFTWARE</span></div>
+          <div class="cube-face back"><span class="cube-tag">🛡️</span><span>CYBERSEC</span></div>
+          <div class="cube-face right"><span class="cube-tag">AI</span><span>CREATIVE</span></div>
+          <div class="cube-face left"><span class="cube-tag">01</span><span>SYSTEMS</span></div>
+          <div class="cube-face top"><span class="cube-tag">LOCK</span><span>DEFENSE</span></div>
+          <div class="cube-face bottom"><span class="cube-tag">CORE</span><span>DEV</span></div>
+        </div>
+      </div>
+      <p class="cube-caption">Explore a dimensão dos projetos</p>
+    </div>
+
+    <!-- Galeria de Cards -->
+    <div class="projects-grid">
+      <!-- Projeto Inicial: Jogo-ia-23-09 -->
+      <article class="project-card">
+        <div class="project-media">
+          <div class="media-overlay"></div>
+          <div class="media-tech-badge">IA & Game Dev</div>
+          <!-- Canvas de partículas para efeito do projeto -->
+          <canvas class="project-canvas-preview" width="360" height="200"></canvas>
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title particle-title" data-text="Jogo-ia-23-09">Jogo-ia-23-09</h3>
+          <p class="project-desc">
+            Este jogo foi feito com IA para demonstrar minha capacidade de utilizar inteligência artificial de forma
+            criativa.
+          </p>
+          <div class="project-actions">
+            <a href="https://github.com/43561-boop/jogo-ia-23-09.git" target="_blank" rel="noopener noreferrer"
+              class="btn-project interactive-btn">
+              <span class="btn-text">Ver no GitHub</span>
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Espaço preparado para próximos projetos -->
+      <article class="project-card placeholder-card">
+        <div class="placeholder-content">
+          <div class="placeholder-icon">+</div>
+          <h4>Novo Projeto</h4>
+          <p>Em fase de pesquisa e desenvolvimento em cibersegurança.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- BARRA DE PROGRESSO DE ROLAGEM E INDICADOR DE POSIÇÃO -->
+<div class="scroll-progress-container" aria-hidden="true">
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+</div>
+
+<!-- BREADCRUMB / INDICADOR FLUTUANTE DE SEÇÃO ATIVA -->
+<nav class="scroll-breadcrumb" aria-label="Localização na página">
+  <span class="breadcrumb-dot"></span>
+  <span class="breadcrumb-text" id="activeSectionLabel">Início</span>
+</nav>
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Davi Kusumi — Desenvolvedor de Software & Cibersegurança</title>
+
+  <!-- Fontes: Lobster (Google Fonts) e Aresink (Fallback estilizado) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- CURSOR ESTILIZADO (Referência 1) -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="24" height="24">
+      <path d="M3 3l7 18 3-7 7-3L3 3z" fill="#F8F9FA" stroke="#212529" stroke-width="1.5" stroke-linejoin="round" />
+    </svg>
+  </div>
+
+  <!-- INTRODUÇÃO: NÚMEROS E EXPLOSÃO EM PARTÍCULAS (Referências 1 e 2) -->
+  <div class="intro-loader" id="introLoader">
+    <canvas id="loaderCanvas" class="loader-canvas"></canvas>
+    <div class="loader-counter-wrapper">
+      <span class="loader-number" id="loaderNumber">00</span>
+      <span class="loader-symbol">%</span>
+    </div>
+  </div>
+
+  <!-- ETAPA 4: BARRA DE PROGRESSO DE ROLAGEM -->
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- ETAPA 4: BREADCRUMB FLUTUANTE DE NAVEGAÇÃO -->
+  <nav class="scroll-breadcrumb" aria-label="Localização na página">
+    <span class="breadcrumb-dot"></span>
+    <span class="breadcrumb-text" id="activeSectionLabel">Início</span>
+  </nav>
+
+  <!-- MENU FIXO MINIMALISTA COM NAVEGAÇÃO INTERATIVA -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#inicio" class="nav-brand">DK</a>
+      <nav class="nav-links">
+        <a href="#inicio" class="nav-item">Início</a>
+        <a href="#sobre" class="nav-item">Sobre</a>
+        <a href="#projetos" class="nav-item">Projetos</a>
+        <a href="#contato" class="nav-item">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- SEÇÃO 1: HERO / INÍCIO -->
+    <section id="inicio" class="hero-section">
+      <div class="container hero-content">
+        <span class="hero-badge reveal-fade-up">Portfólio Profissional</span>
+        <h1 class="hero-title reveal-fade-up">Davi Kusumi</h1>
+        <p class="hero-subtitle reveal-fade-up">
+          Desenvolvedor de software júnior focado em cibersegurança.
+        </p>
+        <div class="hero-cta reveal-fade-up">
+          <a href="#projetos" class="btn-primary interactive-btn">
+            <span>Ver Projetos</span>
+            <span class="btn-glow"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: SOBRE MIM (Sem fotos pessoais, foco na hierarquia e elegância) -->
+    <section id="sobre" class="about-section">
+      <div class="container">
+        <div class="about-box reveal-scale">
+          <span class="section-tag">Conhecimento & Propósito</span>
+          <h2 class="section-title">Sobre mim</h2>
+          <div class="about-text-wrapper">
+            <p class="about-paragraph">
+              Sou Davi Kusumi. Faço curso técnico e busco aplicar boas práticas de desenvolvimento e colaborar com a
+              equipe. Realizei alguns pequenos projetos e pretendo aumentar minha capacidade de criar projetos
+              inovadores. Sou pré-formado em segurança na engenharia de software e pretendo aprender mais sobre outras
+              áreas da tecnologia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ETAPA 3: PROJETOS COM CUBO 3D GIRATÓRIO E GALERIA -->
+    <section id="projetos" class="projects-section">
+      <div class="container">
+        <div class="section-header reveal-fade-up">
+          <span class="section-tag">Trabalhos Desenvolvidos</span>
+          <h2 class="section-title">Projetos</h2>
+          <p class="section-subtitle">
+            Criações autorais integrando engenharia, inteligência artificial e proteção.
+          </p>
+        </div>
+
+        <!-- CUBO 3D GIRATÓRIO (Referência 3: substitui o carro) -->
+        <div class="cube-showcase reveal-scale" aria-hidden="true">
+          <div class="cube-scene">
+            <div class="cube" id="interactiveCube">
+              <div class="cube-face front"><span class="cube-icon">&lt;/&gt;</span><span>SOFTWARE</span></div>
+              <div class="cube-face back"><span class="cube-icon">🛡️</span><span>CYBERSEC</span></div>
+              <div class="cube-face right"><span class="cube-icon">AI</span><span>CREATIVE</span></div>
+              <div class="cube-face left"><span class="cube-icon">01</span><span>SYSTEMS</span></div>
+              <div class="cube-face top"><span class="cube-icon">LOCK</span><span>DEFENSE</span></div>
+              <div class="cube-face bottom"><span class="cube-icon">CORE</span><span>DEV</span></div>
+            </div>
+          </div>
+          <span class="cube-caption">Mova o cursor para interagir com o núcleo 3D</span>
+        </div>
+
+        <!-- GALERIA DE CARDS -->
+        <div class="projects-grid">
+          <!-- PROJETO INICIAL: Jogo-ia-23-09 -->
+          <article class="project-card reveal-fade-up">
+            <div class="project-media">
+              <canvas class="project-canvas-preview" width="360" height="200"></canvas>
+              <span class="project-badge">IA Criativa</span>
+            </div>
+            <div class="project-info">
+              <h3 class="project-name">Jogo-ia-23-09</h3>
+              <p class="project-desc">
+                Este jogo foi feito com IA para demonstrar minha capacidade de utilizar inteligência artificial de forma
+                criativa.
+              </p>
+              <div class="project-actions">
+                <a href="https://github.com/43561-boop/jogo-ia-23-09.git" target="_blank" rel="noopener noreferrer"
+                  class="btn-action interactive-btn">
+                  <span>Acessar no GitHub</span>
+                  <span class="btn-arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD PREPARADO PARA NOVOS PROJETOS -->
+          <article class="project-card placeholder-card reveal-fade-up">
+            <div class="placeholder-body">
+              <span class="placeholder-icon">+</span>
+              <h4 class="placeholder-title">Próximo Projeto</h4>
+              <p class="placeholder-desc">Em fase de arquitetura e validação em cibersegurança.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO CONTATO (Espaço preparado para a Etapa 5) -->
+    <section id="contato" class="contact-section">
+      <div class="container">
+        <div class="section-header reveal-fade-up">
+          <span class="section-tag">Vamos conversar</span>
+          <h2 class="section-title">Contato</h2>
+        </div>
+        <div class="contact-placeholder-box reveal-scale">
+          <p>Seção de formulário pronta para ser implementada na Etapa 5.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+<!-- ETAPA 5: SEÇÃO CONTATO DEFINITIVA -->
+<section id="contato" class="contact-section">
+  <div class="container">
+    <div class="section-header reveal-fade-up">
+      <span class="section-tag">Conecte-se comigo</span>
+      <h2 class="section-title">Contato</h2>
+      <p class="section-subtitle">
+        Tem um projeto, ideia ou oportunidade na área de software ou segurança? Envie uma mensagem.
+      </p>
+    </div>
+
+    <div class="contact-wrapper reveal-scale">
+      <form id="contactForm" class="contact-form" novalidate>
+        <div class="form-grid">
+          <!-- Campo: Nome -->
+          <div class="form-group">
+            <label for="contactName" class="form-label">Nome Completo</label>
+            <input type="text" id="contactName" name="name" class="form-input" placeholder="Seu nome" required
+              autocomplete="name">
+            <span class="form-error-msg" id="nameError" aria-live="polite"></span>
+          </div>
+
+          <!-- Campo: E-mail -->
+          <div class="form-group">
+            <label for="contactEmail" class="form-label">E-mail</label>
+            <input type="email" id="contactEmail" name="email" class="form-input" placeholder="seu.email@exemplo.com"
+              required autocomplete="email">
+            <span class="form-error-msg" id="emailError" aria-live="polite"></span>
+          </div>
+
+          <!-- Campo: Telefone -->
+          <div class="form-group full-width">
+            <label for="contactPhone" class="form-label">Telefone / WhatsApp</label>
+            <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="(00) 00000-0000"
+              autocomplete="tel">
+            <span class="form-error-msg" id="phoneError" aria-live="polite"></span>
+          </div>
+
+          <!-- Campo: Mensagem -->
+          <div class="form-group full-width">
+            <label for="contactMessage" class="form-label">Mensagem</label>
+            <textarea id="contactMessage" name="message" class="form-textarea" rows="5"
+              placeholder="Descreva brevemente o projeto ou mensagem..." required></textarea>
+            <span class="form-error-msg" id="messageError" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <!-- Botão de Envio Interativo (Ref. 4 Overworld Audio) -->
+        <div class="form-actions">
+          <button type="submit" id="btnSubmitForm" class="btn-submit interactive-btn">
+            <span class="btn-submit-text">Enviar Mensagem</span>
+            <span class="btn-submit-icon">✉</span>
+            <span class="btn-ripple-effect"></span>
+          </button>
+        </div>
+
+        <!-- Feedback Visual de Sucesso -->
+        <div id="contactSuccessCard" class="contact-success-card" aria-hidden="true">
+          <div class="success-icon">✓</div>
+          <h4 class="success-title">Mensagem Enviada!</h4>
+          <p class="success-desc">Obrigado pelo contato, Davi Kusumi responderá em breve.</p>
+          <button type="button" id="btnResetForm" class="btn-reset">Enviar outra mensagem</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

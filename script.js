@@ -384,3 +384,385 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+/* ==========================================================================
+   INTERAÇÕES, PARTÍCULAS, CUBO 3D E SCROLL PROGRESSIVO (Vanilla JS)
+   ========================================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // 1. CURSOR PERSONALIZADO (Ref. 1)
+  const cursor = document.getElementById('customCursor');
+  if (cursor && window.matchMedia('(pointer: fine)').matches) {
+    window.addEventListener('mousemove', (e) => {
+      cursor.style.transform = `translate(${e.clientX - 3}px, ${e.clientY - 3}px)`;
+    });
+  }
+
+  // 2. INTRODUÇÃO: CONTADOR DE NÚMEROS E EXPLOSÃO EM PARTÍCULAS (Ref. 2)
+  const introLoader = document.getElementById('introLoader');
+  const loaderNumber = document.getElementById('loaderNumber');
+  const canvas = document.getElementById('loaderCanvas');
+
+  if (introLoader && loaderNumber && canvas) {
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let progress = 0;
+    let particles = [];
+
+    const interval = setInterval(() => {
+      progress += Math.floor(Math.random() * 4) + 1;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        explodeParticles();
+      }
+      loaderNumber.textContent = progress < 10 ? `0${progress}` : progress;
+    }, 25);
+
+    function explodeParticles() {
+      const total = 90;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      for (let i = 0; i < total; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 8 + 3;
+        particles.push({
+          x: centerX,
+          y: centerY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          size: Math.random() * 3 + 1,
+          alpha: 1
+        });
+      }
+
+      function animateExplosion() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= 0.02;
+
+          ctx.fillStyle = `rgba(248, 249, 250, ${Math.max(0, p.alpha)})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        particles = particles.filter(p => p.alpha > 0);
+
+        if (particles.length > 0) {
+          requestAnimationFrame(animateExplosion);
+        } else {
+          introLoader.classList.add('is-hidden');
+        }
+      }
+      animateExplosion();
+    }
+  }
+
+  // 3. ETAPA 3: INTERAÇÃO DO CUBO 3D (Ref. 3 Pilato)
+  const cubeScene = document.querySelector('.cube-scene');
+  const cube = document.getElementById('interactiveCube');
+
+  if (cubeScene && cube) {
+    cubeScene.addEventListener('mousemove', (e) => {
+      const rect = cubeScene.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      const rotY = (x / rect.width) * 90;
+      const rotX = -(y / rect.height) * 90;
+
+      cube.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    });
+
+    cubeScene.addEventListener('mouseleave', () => {
+      cube.style.transform = '';
+    });
+  }
+
+  // PREVIEW DE PARTÍCULAS NO CARD DO JOGO
+  const previewCanvas = document.querySelector('.project-canvas-preview');
+  if (previewCanvas) {
+    const pCtx = previewCanvas.getContext('2d');
+    let pts = [];
+
+    for (let i = 0; i < 35; i++) {
+      pts.push({
+        x: Math.random() * previewCanvas.width,
+        y: Math.random() * previewCanvas.height,
+        vx: (Math.random() - 0.5) * 0.7,
+        vy: (Math.random() - 0.5) * 0.7,
+        size: Math.random() * 2 + 1
+      });
+    }
+
+    function renderProjectPreview() {
+      pCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x;
+          const dy = pts[i].y - pts[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 60) {
+            pCtx.strokeStyle = `rgba(173, 181, 189, ${0.15 * (1 - dist / 60)})`;
+            pCtx.lineWidth = 0.8;
+            pCtx.beginPath();
+            pCtx.moveTo(pts[i].x, pts[i].y);
+            pCtx.lineTo(pts[j].x, pts[j].y);
+            pCtx.stroke();
+          }
+        }
+      }
+
+      pts.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > previewCanvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > previewCanvas.height) p.vy *= -1;
+
+        pCtx.fillStyle = 'rgba(248, 249, 250, 0.7)';
+        pCtx.beginPath();
+        pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        pCtx.fill();
+      });
+
+      requestAnimationFrame(renderProjectPreview);
+    }
+    renderProjectPreview();
+  }
+
+  // 4. ETAPA 4: ANIMAÇÕES DE ROLAGEM, PROGRESSO E BREADCRUMB
+  const progressBar = document.getElementById('scrollProgressBar');
+  const activeLabel = document.getElementById('activeSectionLabel');
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progressVal = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = `${progressVal}%`;
+    }
+  }, { passive: true });
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal-fade-up, .reveal-scale').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && activeLabel) {
+        const id = entry.target.getAttribute('id');
+        const labels = {
+          'inicio': 'Início',
+          'sobre': 'Sobre Mim',
+          'projetos': 'Projetos',
+          'contato': 'Contato'
+        };
+        activeLabel.textContent = labels[id] || id;
+      }
+    });
+  }, { threshold: 0.35 });
+
+  sections.forEach(sec => sectionObserver.observe(sec));
+});
+
+/* ==========================================================================
+   ETAPA 4 — INTERSECTION OBSERVER & CONTROLE DE PROGRESSO DE ROLAGEM
+   ========================================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const progressBar = document.getElementById('scrollProgressBar');
+  const activeLabel = document.getElementById('activeSectionLabel');
+  const sections = document.querySelectorAll('section[id], header[id]');
+
+  // Atualização suave da barra de leitura com requestAnimationFrame
+  let ticking = false;
+
+  function updateScrollProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = `${scrollPercent}%`;
+    }
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateScrollProgress);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Revelação suave de elementos com IntersectionObserver nativo
+  const revealElements = document.querySelectorAll('.reveal-fade-up, .reveal-scale, .project-card, .projetos-header');
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => {
+      el.classList.add('reveal-fade-up');
+      revealObserver.observe(el);
+    });
+
+    // Monitoramento da seção ativa para o Breadcrumb flutuante
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && activeLabel) {
+          const sectionId = entry.target.getAttribute('id');
+          const names = {
+            'inicio': 'Início',
+            'hero': 'Início',
+            'sobre': 'Sobre Mim',
+            'projetos': 'Projetos',
+            'contato': 'Contato'
+          };
+          activeLabel.textContent = names[sectionId] || sectionId.toUpperCase();
+        }
+      });
+    }, {
+      threshold: 0.4
+    });
+
+    sections.forEach(sec => sectionObserver.observe(sec));
+  } else {
+    // Fallback para navegadores legados
+    revealElements.forEach(el => el.classList.add('is-revealed'));
+  }
+});
+// 5. ETAPA 5: VALIDAÇÃO DO FORMULÁRIO DE CONTATO E FEEDBACK ANIMADO
+const form = document.getElementById('contactForm');
+const btnSubmit = document.getElementById('btnSubmitForm');
+const successCard = document.getElementById('contactSuccessCard');
+const btnReset = document.getElementById('btnResetForm');
+
+if (form) {
+  const nameInput = document.getElementById('contactName');
+  const emailInput = document.getElementById('contactEmail');
+  const phoneInput = document.getElementById('contactPhone');
+  const messageInput = document.getElementById('contactMessage');
+
+  const nameError = document.getElementById('nameError');
+  const emailError = document.getElementById('emailError');
+  const messageError = document.getElementById('messageError');
+
+  // Formatação amigável automática do telefone ao digitar
+  if (phoneInput) {
+    phoneInput.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '');
+      if (val.length > 11) val = val.slice(0, 11);
+      if (val.length > 6) {
+        e.target.value = `(${val.slice(0, 2)}) ${val.slice(2, 7)}-${val.slice(7)}`;
+      } else if (val.length > 2) {
+        e.target.value = `(${val.slice(0, 2)}) ${val.slice(2)}`;
+      } else {
+        e.target.value = val;
+      }
+    });
+  }
+
+  function validateFields() {
+    let isValid = true;
+
+    // Validação do Nome
+    if (!nameInput.value.trim()) {
+      nameInput.classList.add('is-invalid');
+      nameError.textContent = 'Por favor, informe seu nome.';
+      isValid = false;
+    } else {
+      nameInput.classList.remove('is-invalid');
+      nameError.textContent = '';
+    }
+
+    // Validação do E-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+      emailInput.classList.add('is-invalid');
+      emailError.textContent = 'Informe um endereço de e-mail válido.';
+      isValid = false;
+    } else {
+      emailInput.classList.remove('is-invalid');
+      emailError.textContent = '';
+    }
+
+    // Validação da Mensagem
+    if (!messageInput.value.trim() || messageInput.value.trim().length < 8) {
+      messageInput.classList.add('is-invalid');
+      messageError.textContent = 'A mensagem deve conter pelo menos 8 caracteres.';
+      isValid = false;
+    } else {
+      messageInput.classList.remove('is-invalid');
+      messageError.textContent = '';
+    }
+
+    return isValid;
+  }
+
+  // Limpa erros ao digitar
+  [nameInput, emailInput, messageInput].forEach(input => {
+    input.addEventListener('input', () => {
+      input.classList.remove('is-invalid');
+      const err = input.parentElement.querySelector('.form-error-msg');
+      if (err) err.textContent = '';
+    });
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (!validateFields()) return;
+
+    // Estado de carregamento simulando envio seguro
+    btnSubmit.classList.add('is-loading');
+    btnSubmit.querySelector('.btn-submit-text').textContent = 'Enviando...';
+    btnSubmit.querySelector('.btn-submit-icon').textContent = '⏳';
+
+    setTimeout(() => {
+      btnSubmit.classList.remove('is-loading');
+      btnSubmit.querySelector('.btn-submit-text').textContent = 'Enviar Mensagem';
+      btnSubmit.querySelector('.btn-submit-icon').textContent = '✉';
+
+      // Exibe o feedback visual de sucesso
+      successCard.classList.add('is-visible');
+      form.reset();
+    }, 1200);
+  });
+
+  if (btnReset && successCard) {
+    btnReset.addEventListener('click', () => {
+      successCard.classList.remove('is-visible');
+    });
+  }
+}
