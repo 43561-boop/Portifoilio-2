@@ -104,6 +104,25 @@ body.cursor-active .cursor-trail {
   background-color: var(--color-highlight);
 }
 
+/* Estado de segurar/arrastar com a seta (Referência: Esther Wong) */
+body.is-cube-dragging,
+body.is-cube-dragging * {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
+
+.custom-cursor.cursor-holding .cursor-arrow,
+#customCursor.cursor-holding svg {
+  transform: scale(0.9) rotate(-20deg);
+  filter: drop-shadow(0 0 12px var(--color-accent)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7));
+}
+
+.custom-cursor.cursor-holding .cursor-trail {
+  transform: scale(2.8);
+  background-color: var(--color-accent);
+  opacity: 0.95;
+}
+
 /* Dispositivos com toque mantêm o cursor natural */
 @media (hover: none) and (pointer: coarse) {
   body {
@@ -381,6 +400,10 @@ body.cursor-active .cursor-trail {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .cube {
@@ -388,9 +411,10 @@ body.cursor-active .cursor-trail {
   height: 170px;
   position: relative;
   transform-style: preserve-3d;
-  animation: continuousCubeRotate 22s infinite linear;
   will-change: transform;
-  transition: transform 0.15s ease-out;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Keyframe de Rotação 3D Contínua e Fluida */
@@ -1496,6 +1520,10 @@ body {
   width: 140px;
   height: 140px;
   perspective: 800px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .cube {
@@ -1503,12 +1531,9 @@ body {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-  animation: rotateCube 16s infinite linear;
-}
-
-.cube-showcase:hover .cube {
-  animation-play-state: paused;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 @keyframes rotateCube {

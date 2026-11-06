@@ -235,29 +235,124 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* =========================================================
-   * 4. INTERAÇÃO TRIDIMENSIONAL DO CUBO (Pilato)
+   * 4. INTERAÇÃO TRIDIMENSIONAL DO CUBO COM CLIQUE E ARRASTE (Pilato)
    * ========================================================= */
-  const cubeScene = document.getElementById('cube-scene');
-  const cube3D = document.getElementById('cube-3d');
+  function setupDraggableCubes() {
+    const cubeScenes = document.querySelectorAll('.cube-scene');
 
-  if (cubeScene && cube3D && !prefersReducedMotion) {
-    window.addEventListener('mousemove', (e) => {
-      // Cálculo de inclinação sutil de acordo com a posição relativa do mouse
-      const rect = cubeScene.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
+    cubeScenes.forEach((scene) => {
+      const cube = scene.querySelector('.cube');
+      if (!cube) return;
 
-      const deltaX = (e.clientX - centerX) / (window.innerWidth / 2);
-      const deltaY = (e.clientY - centerY) / (window.innerHeight / 2);
+      let isDragging = false;
+      let startX = 0;
+      let startY = 0;
+      let rotX = -18;
+      let rotY = 25;
+      let velX = 0;
+      let velY = 0;
+      let autoRotate = true;
+      let resumeTimeout = null;
 
-      // Inclinação suave da cena
-      cubeScene.style.transform = `rotateX(${-deltaY * 12}deg) rotateY(${deltaX * 16}deg)`;
-    });
+      // Desativa animação CSS pura para controle fluído via JavaScript
+      cube.style.animation = 'none';
+      cube.style.transition = 'none';
 
-    cubeScene.addEventListener('mouseleave', () => {
-      cubeScene.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      function updateCubeTransform() {
+        cube.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+      }
+      updateCubeTransform();
+
+      function onPointerStart(e) {
+        if (e.type === 'mousedown' && e.button !== 0) return;
+
+        isDragging = true;
+        autoRotate = false;
+        clearTimeout(resumeTimeout);
+
+        const point = e.touches ? e.touches[0] : e;
+        startX = point.clientX;
+        startY = point.clientY;
+        velX = 0;
+        velY = 0;
+
+        document.body.classList.add('is-cube-dragging');
+        document.querySelectorAll('.custom-cursor').forEach((c) => c.classList.add('cursor-holding'));
+
+        if (e.cancelable && e.type !== 'touchstart') {
+          e.preventDefault();
+        }
+      }
+
+      function onPointerMove(e) {
+        if (!isDragging) return;
+
+        const point = e.touches ? e.touches[0] : e;
+        const deltaX = point.clientX - startX;
+        const deltaY = point.clientY - startY;
+
+        startX = point.clientX;
+        startY = point.clientY;
+
+        const sensitivity = 0.55;
+        velX = deltaX * sensitivity;
+        velY = -deltaY * sensitivity;
+
+        rotY += velX;
+        rotX += velY;
+
+        // Limita a rotação no eixo X para evitar inversão brusca
+        rotX = Math.max(-85, Math.min(85, rotX));
+
+        updateCubeTransform();
+      }
+
+      function onPointerEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+
+        document.body.classList.remove('is-cube-dragging');
+        document.querySelectorAll('.custom-cursor').forEach((c) => c.classList.remove('cursor-holding'));
+
+        // Retoma suavemente a auto-rotação após inatividade
+        resumeTimeout = setTimeout(() => {
+          autoRotate = true;
+        }, 1500);
+      }
+
+      scene.addEventListener('mousedown', onPointerStart);
+      scene.addEventListener('touchstart', onPointerStart, { passive: true });
+
+      window.addEventListener('mousemove', onPointerMove);
+      window.addEventListener('touchmove', onPointerMove, { passive: true });
+
+      window.addEventListener('mouseup', onPointerEnd);
+      window.addEventListener('touchend', onPointerEnd);
+      window.addEventListener('touchcancel', onPointerEnd);
+
+      // Loop de animação contínua e física de inércia
+      function animateCube() {
+        if (!isDragging) {
+          if (Math.abs(velX) > 0.02 || Math.abs(velY) > 0.02) {
+            rotY += velX;
+            rotX += velY;
+            rotX = Math.max(-85, Math.min(85, rotX));
+            velX *= 0.92;
+            velY *= 0.92;
+            updateCubeTransform();
+          } else if (autoRotate && !prefersReducedMotion) {
+            rotY += 0.35;
+            if (rotY >= 360) rotY -= 360;
+            updateCubeTransform();
+          }
+        }
+        requestAnimationFrame(animateCube);
+      }
+      requestAnimationFrame(animateCube);
     });
   }
+
+  setupDraggableCubes();
 
   /* =========================================================
    * 5. MENU FIXO E ATUALIZAÇÃO DE LINKS ATIVOS (Funcionalidade 1)
@@ -464,34 +559,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 3. ETAPA 3: INTERAÇÃO DO CUBO 3D (Ref. 3 Pilato)
-  const cubeScene = document.querySelector('.cube-scene');
-  const cube = document.getElementById('interactiveCube');
+  // 3. ETAPA 3: INTERAÇÃO DO CUBO 3D (Ref. 3 Pilato — gerenciada unificadamente por setupDraggableCubes)
 
-  if (cubeScene && cube) {
-    cubeScene.addEventListener('mousemove', (e) => {
-      const rect = cubeScene.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-
-      const rotY = (x / rect.width) * 90;
-      const rotX = -(y / rect.height) * 90;
-
-      cube.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-    });
-
-    cubeScene.addEventListener('mouseleave', () => {
-      cube.style.transform = '';
-    });
-  }
-
-  // PREVIEW DE PARTÍCULAS NO CARD DO JOGO
-  const previewCanvas = document.querySelector('.project-canvas-preview');
-  if (previewCanvas) {
+  // PREVIEW DE PARTÍCULAS NOS CARDS DE PROJETOS
+  const previewCanvases = document.querySelectorAll('.project-canvas-preview');
+  previewCanvases.forEach((previewCanvas) => {
     const pCtx = previewCanvas.getContext('2d');
     let pts = [];
 
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 28; i++) {
       pts.push({
         x: Math.random() * previewCanvas.width,
         y: Math.random() * previewCanvas.height,
@@ -521,7 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      pts.forEach(p => {
+      pts.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
         if (p.x < 0 || p.x > previewCanvas.width) p.vx *= -1;
@@ -536,7 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(renderProjectPreview);
     }
     renderProjectPreview();
-  }
+  });
 
   // 4. ETAPA 4: ANIMAÇÕES DE ROLAGEM, PROGRESSO E BREADCRUMB
   const progressBar = document.getElementById('scrollProgressBar');

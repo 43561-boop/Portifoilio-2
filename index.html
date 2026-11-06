@@ -125,8 +125,8 @@
 
       <!-- Coluna da Direita: Objeto 3D Girando Continuamente (Referência: Pilato -> Cubo) -->
       <div class="hero-visual" aria-hidden="true">
-        <div class="cube-scene" id="cube-scene">
-          <div class="cube" id="cube-3d">
+        <div class="cube-scene" id="cube-scene" data-interactive="true" title="Clique e arraste para girar">
+          <div class="cube" id="cube-3d" data-interactive="true">
             <div class="cube-face cube-front">
               <div class="cube-core-grid"></div>
               <span class="cube-tag">&lt;SEC/&gt;</span>
@@ -256,8 +256,8 @@
 
     <!-- Referência 3: Cubo 3D Interativo Substituindo o Carro -->
     <div class="cube-showcase" aria-hidden="true">
-      <div class="cube-scene">
-        <div class="cube" id="interactiveCube">
+      <div class="cube-scene" data-interactive="true" title="Clique e arraste para girar">
+        <div class="cube" id="interactiveCube" data-interactive="true">
           <div class="cube-face front"><span class="cube-tag">&lt;/&gt;</span><span>SOFTWARE</span></div>
           <div class="cube-face back"><span class="cube-tag">🛡️</span><span>CYBERSEC</span></div>
           <div class="cube-face right"><span class="cube-tag">AI</span><span>CREATIVE</span></div>
@@ -266,16 +266,16 @@
           <div class="cube-face bottom"><span class="cube-tag">CORE</span><span>DEV</span></div>
         </div>
       </div>
-      <p class="cube-caption">Explore a dimensão dos projetos</p>
+      <p class="cube-caption">Clique e arraste para girar o cubo 3D</p>
     </div>
 
     <!-- Galeria de Cards -->
     <div class="projects-grid">
-      <!-- Projeto Inicial: Jogo-ia-23-09 -->
+      <!-- Projeto 1: Jogo-ia-23-09 -->
       <article class="project-card">
         <div class="project-media">
           <div class="media-overlay"></div>
-          <div class="media-tech-badge">IA & Game Dev</div>
+          <div class="media-tech-badge">IA &amp; Game Dev</div>
           <!-- Canvas de partículas para efeito do projeto -->
           <canvas class="project-canvas-preview" width="360" height="200"></canvas>
         </div>
@@ -288,6 +288,30 @@
           </p>
           <div class="project-actions">
             <a href="https://github.com/43561-boop/jogo-ia-23-09.git" target="_blank" rel="noopener noreferrer"
+              class="btn-project interactive-btn">
+              <span class="btn-text">Ver no GitHub</span>
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 2: IA -->
+      <article class="project-card">
+        <div class="project-media">
+          <div class="media-overlay"></div>
+          <div class="media-tech-badge">IA &amp; Mecânicas</div>
+          <!-- Canvas de partículas para efeito do projeto -->
+          <canvas class="project-canvas-preview" width="360" height="200"></canvas>
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title particle-title" data-text="IA">IA</h3>
+          <p class="project-desc">
+            Foi o primeiro projeto que usei IA com o objetivo de entender as mecanicas.
+          </p>
+          <div class="project-actions">
+            <a href="https://github.com/43561-boop/IA.git" target="_blank" rel="noopener noreferrer"
               class="btn-project interactive-btn">
               <span class="btn-text">Ver no GitHub</span>
               <span class="btn-arrow">→</span>
@@ -425,8 +449,8 @@
 
         <!-- CUBO 3D GIRATÓRIO (Referência 3: substitui o carro) -->
         <div class="cube-showcase reveal-scale" aria-hidden="true">
-          <div class="cube-scene">
-            <div class="cube" id="interactiveCube">
+          <div class="cube-scene" data-interactive="true" title="Clique e arraste para girar">
+            <div class="cube" id="interactiveCube-2" data-interactive="true">
               <div class="cube-face front"><span class="cube-icon">&lt;/&gt;</span><span>SOFTWARE</span></div>
               <div class="cube-face back"><span class="cube-icon">🛡️</span><span>CYBERSEC</span></div>
               <div class="cube-face right"><span class="cube-icon">AI</span><span>CREATIVE</span></div>
@@ -435,12 +459,12 @@
               <div class="cube-face bottom"><span class="cube-icon">CORE</span><span>DEV</span></div>
             </div>
           </div>
-          <span class="cube-caption">Mova o cursor para interagir com o núcleo 3D</span>
+          <span class="cube-caption">Clique e arraste para girar o cubo 3D</span>
         </div>
 
         <!-- GALERIA DE CARDS -->
         <div class="projects-grid">
-          <!-- PROJETO INICIAL: Jogo-ia-23-09 -->
+          <!-- PROJETO 1: Jogo-ia-23-09 -->
           <article class="project-card reveal-fade-up">
             <div class="project-media">
               <canvas class="project-canvas-preview" width="360" height="200"></canvas>
@@ -462,6 +486,27 @@
             </div>
           </article>
 
+          <!-- PROJETO 2: IA -->
+          <article class="project-card reveal-fade-up">
+            <div class="project-media">
+              <canvas class="project-canvas-preview" width="360" height="200"></canvas>
+              <span class="project-badge">IA &amp; Mecânicas</span>
+            </div>
+            <div class="project-info">
+              <h3 class="project-name">IA</h3>
+              <p class="project-desc">
+                Foi o primeiro projeto que usei IA com o objetivo de entender as mecanicas.
+              </p>
+              <div class="project-actions">
+                <a href="https://github.com/43561-boop/IA.git" target="_blank" rel="noopener noreferrer"
+                  class="btn-action interactive-btn">
+                  <span>Acessar no GitHub</span>
+                  <span class="btn-arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
           <!-- CARD PREPARADO PARA NOVOS PROJETOS -->
           <article class="project-card placeholder-card reveal-fade-up">
             <div class="placeholder-body">
@@ -474,15 +519,70 @@
       </div>
     </section>
 
-    <!-- SEÇÃO CONTATO (Espaço preparado para a Etapa 5) -->
+    <!-- ETAPA 5: SEÇÃO CONTATO DEFINITIVA -->
     <section id="contato" class="contact-section">
       <div class="container">
         <div class="section-header reveal-fade-up">
-          <span class="section-tag">Vamos conversar</span>
+          <span class="section-tag">Conecte-se comigo</span>
           <h2 class="section-title">Contato</h2>
+          <p class="section-subtitle">
+            Tem um projeto, ideia ou oportunidade na área de software ou segurança? Envie uma mensagem.
+          </p>
         </div>
-        <div class="contact-placeholder-box reveal-scale">
-          <p>Seção de formulário pronta para ser implementada na Etapa 5.</p>
+
+        <div class="contact-wrapper reveal-scale">
+          <form id="contactForm" class="contact-form" novalidate>
+            <div class="form-grid">
+              <!-- Campo: Nome -->
+              <div class="form-group">
+                <label for="contactName" class="form-label">Nome Completo</label>
+                <input type="text" id="contactName" name="name" class="form-input" placeholder="Seu nome" required
+                  autocomplete="name">
+                <span class="form-error-msg" id="nameError" aria-live="polite"></span>
+              </div>
+
+              <!-- Campo: E-mail -->
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">E-mail</label>
+                <input type="email" id="contactEmail" name="email" class="form-input" placeholder="seu.email@exemplo.com"
+                  required autocomplete="email">
+                <span class="form-error-msg" id="emailError" aria-live="polite"></span>
+              </div>
+
+              <!-- Campo: Telefone -->
+              <div class="form-group full-width">
+                <label for="contactPhone" class="form-label">Telefone / WhatsApp</label>
+                <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="(00) 00000-0000"
+                  autocomplete="tel">
+                <span class="form-error-msg" id="phoneError" aria-live="polite"></span>
+              </div>
+
+              <!-- Campo: Mensagem -->
+              <div class="form-group full-width">
+                <label for="contactMessage" class="form-label">Mensagem</label>
+                <textarea id="contactMessage" name="message" class="form-textarea" rows="5"
+                  placeholder="Descreva brevemente o projeto ou mensagem..." required></textarea>
+                <span class="form-error-msg" id="messageError" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <!-- Botão de Envio Interativo (Ref. 4 Overworld Audio) -->
+            <div class="form-actions">
+              <button type="submit" id="btnSubmitForm" class="btn-submit interactive-btn">
+                <span class="btn-submit-text">Enviar Mensagem</span>
+                <span class="btn-submit-icon">✉</span>
+                <span class="btn-ripple-effect"></span>
+              </button>
+            </div>
+
+            <!-- Feedback Visual de Sucesso -->
+            <div id="contactSuccessCard" class="contact-success-card" aria-hidden="true">
+              <div class="success-icon">✓</div>
+              <h4 class="success-title">Mensagem Enviada!</h4>
+              <p class="success-desc">Obrigado pelo contato, Davi Kusumi responderá em breve.</p>
+              <button type="button" id="btnResetForm" class="btn-reset">Enviar outra mensagem</button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -492,70 +592,3 @@
 </body>
 
 </html>
-<!-- ETAPA 5: SEÇÃO CONTATO DEFINITIVA -->
-<section id="contato" class="contact-section">
-  <div class="container">
-    <div class="section-header reveal-fade-up">
-      <span class="section-tag">Conecte-se comigo</span>
-      <h2 class="section-title">Contato</h2>
-      <p class="section-subtitle">
-        Tem um projeto, ideia ou oportunidade na área de software ou segurança? Envie uma mensagem.
-      </p>
-    </div>
-
-    <div class="contact-wrapper reveal-scale">
-      <form id="contactForm" class="contact-form" novalidate>
-        <div class="form-grid">
-          <!-- Campo: Nome -->
-          <div class="form-group">
-            <label for="contactName" class="form-label">Nome Completo</label>
-            <input type="text" id="contactName" name="name" class="form-input" placeholder="Seu nome" required
-              autocomplete="name">
-            <span class="form-error-msg" id="nameError" aria-live="polite"></span>
-          </div>
-
-          <!-- Campo: E-mail -->
-          <div class="form-group">
-            <label for="contactEmail" class="form-label">E-mail</label>
-            <input type="email" id="contactEmail" name="email" class="form-input" placeholder="seu.email@exemplo.com"
-              required autocomplete="email">
-            <span class="form-error-msg" id="emailError" aria-live="polite"></span>
-          </div>
-
-          <!-- Campo: Telefone -->
-          <div class="form-group full-width">
-            <label for="contactPhone" class="form-label">Telefone / WhatsApp</label>
-            <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="(00) 00000-0000"
-              autocomplete="tel">
-            <span class="form-error-msg" id="phoneError" aria-live="polite"></span>
-          </div>
-
-          <!-- Campo: Mensagem -->
-          <div class="form-group full-width">
-            <label for="contactMessage" class="form-label">Mensagem</label>
-            <textarea id="contactMessage" name="message" class="form-textarea" rows="5"
-              placeholder="Descreva brevemente o projeto ou mensagem..." required></textarea>
-            <span class="form-error-msg" id="messageError" aria-live="polite"></span>
-          </div>
-        </div>
-
-        <!-- Botão de Envio Interativo (Ref. 4 Overworld Audio) -->
-        <div class="form-actions">
-          <button type="submit" id="btnSubmitForm" class="btn-submit interactive-btn">
-            <span class="btn-submit-text">Enviar Mensagem</span>
-            <span class="btn-submit-icon">✉</span>
-            <span class="btn-ripple-effect"></span>
-          </button>
-        </div>
-
-        <!-- Feedback Visual de Sucesso -->
-        <div id="contactSuccessCard" class="contact-success-card" aria-hidden="true">
-          <div class="success-icon">✓</div>
-          <h4 class="success-title">Mensagem Enviada!</h4>
-          <p class="success-desc">Obrigado pelo contato, Davi Kusumi responderá em breve.</p>
-          <button type="button" id="btnResetForm" class="btn-reset">Enviar outra mensagem</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
