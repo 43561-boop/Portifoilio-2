@@ -11,8 +11,8 @@ As funcionalidades do portfólio foram definidas na seguinte sequência estraté
 3. **Galeria de Projetos**:
    - Cartões com imagens dos projetos.
    - Títulos e links formados dinamicamente pela compactação de partículas.
-   - Projeto 1: "Jogo-ia-23-09" (repositório: `https://github.com/43561-boop/jogo-ia-23-09.git`).
-   - Projeto 2: "IA" (repositório: `https://github.com/43561-boop/IA.git`).
+   - Projeto 1: "Jogo-ia-23-09" (repositório: `https://github.com/43561-boop/jogo-ia-23-09.git` | deploy: `https://jogo-ia-23-09.vercel.app/`).
+   - Projeto 2: "skins 2A" (repositório: `https://github.com/43561-boop/skins2a.git` | deploy: `https://skins2a.vercel.app/`).
 4. **Animação Suave de Rolagem e Reveal**:
    - Transições de scroll elegantes e revelação gradual de elementos na viewport.
 5. **Formulário de Contato**:

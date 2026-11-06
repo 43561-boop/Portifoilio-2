@@ -1680,6 +1680,14 @@ body {
   flex-grow: 1;
 }
 
+.project-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: auto;
+}
+
 /* Botão interativo tátil (Ref. Overworld Audio) */
 .btn-project {
   display: inline-flex;
